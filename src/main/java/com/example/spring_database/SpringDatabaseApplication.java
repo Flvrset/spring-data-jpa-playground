@@ -31,17 +31,8 @@ public class SpringDatabaseApplication {
                 4.5F,
                 3.2F);
 
-        Products product2 = new Products(nivea,
-                "2b",
-                "NiveaNew",
-                "Small",
-                "testik",
-                "",
-                2,
-                4.45F,
-                3.2F);
 
-        List<Products>  products = Arrays.asList(product, product2);
+        List<Products>  products = List.of(product);
         nivea.setProducts(products);
         productLinesRepository.save(nivea);
         productLinesRepository.save(Ziaja);
