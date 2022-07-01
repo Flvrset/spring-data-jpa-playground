@@ -8,11 +8,8 @@ public class OrderDetails {
     @Id
     private Long orderNumber;
 
-    @Column(length = 15, nullable = false)
-    private String productCode;
-
-    @OneToOne(mappedBy = "order")
-    @JoinColumn(name= "product_code")
+    @OneToOne
+    @JoinColumn(name= "product_code", referencedColumnName = "product_code")
     private Products product;
 
     @Column(nullable = false)
@@ -24,5 +21,15 @@ public class OrderDetails {
     @Column(nullable = false)
     private Integer orderLineNumber;
 
+    public OrderDetails(Long orderNumber, Products product, Long quantityOrdered, Float priceEach, Integer orderLineNumber) {
+        this.orderNumber = orderNumber;
+        this.product = product;
+        this.quantityOrdered = quantityOrdered;
+        this.priceEach = priceEach;
+        this.orderLineNumber = orderLineNumber;
+    }
 
+    public OrderDetails() {
+
+    }
 }

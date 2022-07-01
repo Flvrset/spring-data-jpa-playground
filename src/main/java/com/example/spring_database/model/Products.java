@@ -9,12 +9,8 @@ import javax.persistence.*;
 @Table(name="products")
 public class Products {
     @Id
-    @Column(length = 15, nullable = false)
+    @Column(length = 15, nullable = false, name = "product_code")
     private String productCode;
-
-    @OneToOne
-    @NotFound(action = NotFoundAction.IGNORE)
-    private OrderDetails order;
 
     @Column(length = 70, nullable = false)
     private String productName;
@@ -63,70 +59,5 @@ public class Products {
 
     public Products() {
 
-    }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-
-    public String getProductScale() {
-        return productScale;
-    }
-
-    public void setProductScale(String productScale) {
-        this.productScale = productScale;
-    }
-
-    public String getProductVendor() {
-        return productVendor;
-    }
-
-    public void setProductVendor(String productVendor) {
-        this.productVendor = productVendor;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    public Integer getQuantityInStock() {
-        return quantityInStock;
-    }
-
-    public void setQuantityInStock(Integer quantityInStock) {
-        this.quantityInStock = quantityInStock;
-    }
-
-    public Float getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(Float buyPrice) {
-        this.buyPrice = buyPrice;
-    }
-
-    public Float getMSRP() {
-        return MSRP;
-    }
-
-    public void setMSRP(Float MSRP) {
-        this.MSRP = MSRP;
     }
 }
