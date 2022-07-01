@@ -1,7 +1,9 @@
 package com.example.spring_database;
 
+import com.example.spring_database.model.OrderDetails;
 import com.example.spring_database.model.ProductLines;
 import com.example.spring_database.model.Products;
+import com.example.spring_database.repository.OrderDetailsRepository;
 import com.example.spring_database.repository.ProductsRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,9 +20,10 @@ public class SpringDatabaseApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringDatabaseApplication.class, args);
         ProductLinesRepository productLinesRepository = context.getBean(ProductLinesRepository.class);
+        OrderDetailsRepository orderDetailsRepository = context.getBean(OrderDetailsRepository.class);
+        ProductsRepository productsRepository = context.getBean(ProductsRepository.class);
 
         ProductLines nivea =  new ProductLines("Nivea");
-        ProductLines Ziaja = new ProductLines("Ziaja");
         Products product = new Products(nivea,
                 "1a",
                 "Nivea",
@@ -31,19 +34,12 @@ public class SpringDatabaseApplication {
                 4.5F,
                 3.2F);
 
-
-        List<Products>  products = List.of(product);
-        nivea.setProducts(products);
+        nivea.setProducts(List.of(product));
         productLinesRepository.save(nivea);
-        productLinesRepository.save(Ziaja);
+
+        OrderDetails order = new OrderDetails(1L, product, 1L, 1.5F, 1);
+        orderDetailsRepository.save(order);
 
 
-        ProductLines searchedProductLine = productLinesRepository.findById("Ziaja").get();
-
-        Products product3 = new Products(searchedProductLine,
-                "", "", "", "", "", 4, 4F, 4F);
-
-        searchedProductLine.setProducts(List.of(product3));
-        productLinesRepository.save(searchedProductLine);
     }
 }
