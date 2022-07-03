@@ -17,7 +17,7 @@ public class Products {
 
     @ManyToOne
     @JoinColumn(name = "product_line")
-    public ProductLines productLine;
+    private ProductLines productLine;
 
     @Column(length = 10, nullable = false)
     private String productScale;
