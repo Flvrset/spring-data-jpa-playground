@@ -1,12 +1,20 @@
 package com.example.spring_database.model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="orderdetails")
-public class OrderDetails {
+public class OrderDetails implements Serializable {
     @Id
     private Long orderNumber;
+
+    @OneToOne
+    @JoinColumn(name = "order_number", referencedColumnName = "order_number")
+    private Orders order;
 
     @OneToOne
     @JoinColumn(name= "product_code", referencedColumnName = "product_code")
