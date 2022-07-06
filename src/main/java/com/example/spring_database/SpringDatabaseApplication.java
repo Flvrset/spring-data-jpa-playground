@@ -1,17 +1,14 @@
 package com.example.spring_database;
 
-import com.example.spring_database.model.OrderDetails;
-import com.example.spring_database.model.Orders;
-import com.example.spring_database.model.ProductLines;
-import com.example.spring_database.model.Products;
-import com.example.spring_database.repository.OrderDetailsRepository;
-import com.example.spring_database.repository.OrdersRepository;
-import com.example.spring_database.repository.ProductsRepository;
+import com.example.spring_database.model.Employees;
+import com.example.spring_database.model.Offices;
+import com.example.spring_database.repository.EmployeesRepository;
+import com.example.spring_database.repository.OfficesRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import com.example.spring_database.repository.ProductLinesRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -19,33 +16,16 @@ public class SpringDatabaseApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringDatabaseApplication.class, args);
-        ProductLinesRepository productLinesRepository = context.getBean(ProductLinesRepository.class);
-        OrderDetailsRepository orderDetailsRepository = context.getBean(OrderDetailsRepository.class);
-        ProductsRepository productsRepository = context.getBean(ProductsRepository.class);
-        OrdersRepository ordersRepository = context.getBean(OrdersRepository.class);
+        OfficesRepository officesRepository = context.getBean(OfficesRepository.class);
+        EmployeesRepository employeesRepository = context.getBean(EmployeesRepository.class);
 
-
-
-        ProductLines nivea =  new ProductLines("Nivea");
-        Products product = new Products(nivea,
-                "1a",
-                "Nivea",
-                "Big",
-                "test",
-                "",
-                3,
-                4.5F,
-                3.2F);
-
-        nivea.setProducts(List.of(product));
-        productLinesRepository.save(nivea);
-
-
-        Orders order = new Orders(1L, 1L);
-        ordersRepository.save(order);
-
-        OrderDetails orderDetail = new OrderDetails(1L, product, 1L, 1.5F, 1);
-        orderDetailsRepository.save(orderDetail);
+        Offices biuro1 = new Offices("Bielsko", "123456789", "3 Maja", "Poland", "43-385");
+        Employees marek = new Employees("Kowalski", "Marek", "maromaro@gmail.com");
+        marek.setOffice(biuro1);
+        Employees basia = new Employees("Szota", "Basia", "email@email.com");
+        basia.setOffice(biuro1);
+        officesRepository.save(biuro1);
+        employeesRepository.saveAll(Arrays.asList(marek, basia));
 
 
     }
