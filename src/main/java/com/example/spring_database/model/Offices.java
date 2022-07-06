@@ -1,7 +1,5 @@
 package com.example.spring_database.model;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,28 +7,35 @@ import java.util.Set;
 @Table(name="offices")
 public class Offices {
     @Id
-    @Column(length =10, nullable = false)
-    private String officeCode;
+    @GeneratedValue
+    private Long officeCode;
 
-    @Column(length = 50, nullable = false)
     private String city;
 
-    @Column( length = 50, nullable = false)
     private String phone;
 
-    @Column(length = 50, nullable = false)
     private String addressLine1;
 
-    @Column(length = 50)
     private String addressLine2;
 
-    @Column(length= 50, nullable = false)
     private String country;
 
-    @Column(length = 15, nullable = false)
     private String postalCode;
 
-    @Column(length = 10, nullable = false)
     private String territory;
 
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
+    private Set<Employees> employeesSet;
+
+    public Offices(String city, String phone, String addressLine1, String country, String postalCode) {
+        this.city = city;
+        this.phone = phone;
+        this.addressLine1 = addressLine1;
+        this.country = country;
+        this.postalCode = postalCode;
+    }
+
+    public Offices() {
+
+    }
 }
