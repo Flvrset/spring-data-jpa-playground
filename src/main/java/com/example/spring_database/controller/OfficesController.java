@@ -29,4 +29,18 @@ public class OfficesController {
         officesService.addNewOffice(office);
     }
 
+    @DeleteMapping(path = "{officeId}")
+    public void deleteOffice(@PathVariable("officeId") Long officeCode){
+        officesService.deleteOffice(officeCode);
+    }
+
+    @PutMapping(path = "{officeId}")
+    public void updateOffice(@PathVariable("officeId") Long officeCode,
+                             @RequestParam(required = false) String phone,
+                             @RequestParam(required = false) String city,
+                             @RequestParam(required = false) String postalCode){
+        officesService.updateOffice(officeCode, phone, city, postalCode);
+
+    }
+
 }
