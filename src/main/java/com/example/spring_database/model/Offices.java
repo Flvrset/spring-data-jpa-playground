@@ -24,7 +24,7 @@ public class Offices {
 
     private String territory;
 
-    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "office")
     private Set<Employees> employeesSet;
 
     public Offices(String city, String phone, String addressLine1, String country, String postalCode) {
