@@ -4,8 +4,6 @@ import com.example.spring_database.model.Offices;
 import com.example.spring_database.repository.OfficesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
